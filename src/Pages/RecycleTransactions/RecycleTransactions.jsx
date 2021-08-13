@@ -1,86 +1,60 @@
 import React from 'react'
-import {Link} from "react-router-dom"
-import Navbar from '../../components/Navbar';
 import "./RecycleTransactions.css"
+import Navbar from '../../components/Navbar';
+import api from '../../libs/fetch';
+import Loader from "react-js-loader";
+import RecycleBar from '../../components/RecycleBar';
 
 class RecycleTransactions extends React.Component{
+    state = {
+        loading: true,
+        error: null,
+        data: undefined,
+    }
+
+    componentDidMount() {
+        this.fetchData();
+        this.setFetchInterval();
+    }
+
+
+    fetchData = async () => {
+        this.setState({ loading: true, error: null})
+        try {
+            const data = await api.users.list();
+            data.reverse();
+            this.setState({ loading: false, data: data })
+        } catch (error) {
+            this.setState({ loading: false, error: error, data: []})
+        }
+    }
+
+    setFetchInterval() {
+        this.interval = setInterval(this.fetchData, 3000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
     render(){
+        if (this.state.loading == true && !this.state.data) {
+            return <div className={"Loader"}>
+                    <Loader type="spinner-circle" bgColor={"#05386B"} title={"spinner-circle"} size={250} />
+                    </div>;
+        }
         return(
             <React.Fragment>
-            <div className="transactionsBackground" style={{ height: '100vh' }}>
+                <div className="transactionsBackground" style={{ height: '100vh' }}>
                 <Navbar></Navbar>
                     <div className="bar">
                         <h1 className="qr">QR</h1>        
                         <h1 className="id">ID</h1>        
                         <h1 className="machine">Machine</h1>        
                         <h1 className="amount">Amount</h1>        
-                        <h1 className="details">Details</h1>        
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-                    <div className="barInfo">
-                        <img className="qrInfo" src={"https://www.dropbox.com/s/rydgeh5iv0mjgkh/icons8-codigo-qr-80.png?raw=1"} alt="" />
-                        <h1 className="idInfo">259A74</h1>        
-                        <h1 className="machineInfo">RC-01</h1>        
-                        <h1 className="amountInfo">16:46 - 09/21</h1>
-                        <img className="detailsInfo" src={"https://www.dropbox.com/s/lsqzok8b49y3f9h/icons8-mas-384.png?raw=1"} alt="" />
-                        <img className="deleteInfo" src={"https://www.dropbox.com/s/qqr98r1day6zh3q/icons8-basura-256.png?raw=1"} alt="" />  
-                    </div>
-            </div>
+                        <h1 className="details">Details</h1>       
+                        <RecycleBar users={this.state.data}></RecycleBar> 
+                    </div>      
+                </div>
             </React.Fragment>
         );
     }

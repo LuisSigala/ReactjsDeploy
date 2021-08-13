@@ -1,0 +1,20 @@
+.VerifyBack{
+    background-color: #379683;
+}
+
+.VerifyBack img{
+    width: 48%;
+}
+
+.verifyButton{
+    width: 40%;
+    height: 15%;
+    position: fixed;
+    margin-top: 38%;
+    margin-left: -44%;
+    text-align: center;
+    background-color: #05386B;
+    font-size: 400%;
+    border-radius: 50px;
+    color: white;
+}

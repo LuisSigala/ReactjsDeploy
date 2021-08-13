@@ -7,6 +7,7 @@ import Landing from './Pages/Landing/Landing';
 import Storage from './Pages/Storage/Storage';
 import NotFound from './Pages/NotFound/NotFound';
 import Rewards from './UserPages/Rewards/Rewards';
+import EmailVerify from './Pages/Login/VerifyEmail';
 import UserMain from './UserPages/UserMain/UserMain';
 import RecycleUser from './UserPages/Recycle/Recycle';
 import UserLanding from './UserPages/Landing/UserLanding';
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/Storage" component={Storage}></Route>
           <Route exact path="/Rewards" component={Rewards}></Route>
           <Route exact path="/Recycle" component={RecycleUser}></Route>
+          <Route exact path="/EmailVerify" component={EmailVerify}></Route>
           <Route exact path="/UserLanding" component={UserLanding}></Route>
           <Route exact path="/Materials" component={MaterialsIndex}></Route>
           <Route exact path="/Can information" component={CanMaterialInfo}></Route>
