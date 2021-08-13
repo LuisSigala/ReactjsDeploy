@@ -21,7 +21,7 @@ class RecycleUser extends React.Component{
                             <Link to="/QR">
                             <button className="qr-code">Scan</button>
                             </Link>
-                            <Link to="/UserMain">
+                            <Link to="/EmailVerify">
                             <button className="end">End Recycling</button>
                             </Link>
                     </div>
