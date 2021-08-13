@@ -1,5 +1,4 @@
 import React from 'react' 
-import { BrowserRouter, Route, Switch} from "react-router-dom"
 import QR from './UserPages/Qr/Qr';
 import Login from './Pages/Login/Login';
 import Logout from './Pages/Logout/Logout';
@@ -11,6 +10,7 @@ import EmailVerify from './Pages/Login/VerifyEmail';
 import UserMain from './UserPages/UserMain/UserMain';
 import RecycleUser from './UserPages/Recycle/Recycle';
 import UserLanding from './UserPages/Landing/UserLanding';
+import { BrowserRouter, Route, Switch} from "react-router-dom"
 import MaterialsInfo from './Pages/MaterialsInfo/MaterialsInfo';
 import MaterialsIndex from './Pages/MaterialsIndex/MaterialsIndex';
 import CanMaterialInfo from './Pages/CanMaterialInfo/CanMaterialInfo';
